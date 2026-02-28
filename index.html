@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bluesans</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --blue: #1450a3;
+        --blue-mid: #1e63c4;
+        --blue-light: #1d6fd8;
+        --blue-pale: #eff6ff;
+        --black: #0a0f1e;
+        --gray: #64748b;
+        --gray-light: #e2eaf4;
+        --white: #ffffff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--white);
+        color: var(--black);
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 60px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(20, 80, 163, 0.08);
+      }
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--blue);
+        letter-spacing: -1px;
+      }
+      .logo span {
+        color: var(--black);
+      }
+      /* NAVBAR LOGO — reduced size */
+      .logo-img {
+        height: 28px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      /* FOOTER LOGO — slightly smaller */
+      .footer-logo-img {
+        height: 22px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .logo-fallback {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: var(--blue);
+      }
+      .nav-cta {
+        background: var(--blue);
+        color: var(--white);
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+      }
+      .nav-cta:hover {
+        background: var(--black);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(20, 80, 163, 0.3);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 60px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(20, 80, 163, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(20, 80, 163, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+      }
+      .blob {
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle at 40% 40%,
+          rgba(59, 130, 246, 0.18),
+          transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .blob2 {
+        position: absolute;
+        bottom: -100px;
+        left: -80px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(20, 80, 163, 0.07),
+          transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* LEFT CONTENT */
+      .hero-left {
+        animation: fadeUp 0.8s ease both;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue-pale);
+        border: 1px solid rgba(20, 80, 163, 0.2);
+        border-radius: 50px;
+        padding: 6px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--blue);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--blue-light);
+        animation: pulse 2s infinite;
+      }
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        color: var(--black);
+        margin-bottom: 24px;
+      }
+      h1 .accent {
+        color: var(--blue);
+        position: relative;
+      }
+      h1 .accent::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--blue-light);
+        border-radius: 2px;
+        opacity: 0.5;
+      }
+
+      .hero-desc {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: var(--gray);
+        max-width: 480px;
+        margin-bottom: 40px;
+      }
+
+      /* WAITLIST FORM */
+      .waitlist-box {
+        background: var(--white);
+        border: 1.5px solid var(--gray-light);
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 8px 40px rgba(20, 80, 163, 0.08);
+      }
+      .waitlist-box h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .waitlist-box p {
+        font-size: 0.88rem;
+        color: var(--gray);
+        margin-bottom: 20px;
+      }
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .form-row input,
+      .form-row select {
+        width: 100%;
+        padding: 14px 18px;
+        border: 1.5px solid var(--gray-light);
+        border-radius: 12px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.95rem;
+        color: var(--black);
+        background: #fafcff;
+        outline: none;
+        transition: border 0.2s;
+      }
+      .form-row input:focus,
+      .form-row select:focus {
+        border-color: var(--blue-light);
+      }
+      .form-row input::placeholder {
+        color: #a0aec0;
+      }
+      .btn-submit {
+        width: 100%;
+        padding: 15px;
+        background: var(--blue);
+        color: var(--white);
+        border: none;
+        border-radius: 12px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 4px;
+      }
+      .btn-submit:hover {
+        background: var(--black);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(20, 80, 163, 0.3);
+      }
+      .form-note {
+        font-size: 0.78rem;
+        color: var(--gray);
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      /* success state */
+      .success-msg {
+        display: none;
+        text-align: center;
+        padding: 20px 0;
+      }
+      .success-msg .checkmark {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--blue-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 1.6rem;
+      }
+      .success-msg h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .success-msg p {
+        font-size: 0.88rem;
+        color: var(--gray);
+      }
+
+      /* RIGHT, IMAGE CLUSTER */
+      .hero-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeUp 0.8s 0.2s ease both;
+      }
+      .image-cluster {
+        position: relative;
+        width: 440px;
+        height: 480px;
+      }
+      .img-circle {
+        position: absolute;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--white);
+        box-shadow: 0 12px 40px rgba(20, 80, 163, 0.18);
+        background: var(--blue-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+      .img-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .img-placeholder {
+        font-size: 2.2rem;
+      }
+      .img-placeholder-text {
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--blue);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 0 10px;
+      }
+      .img-circle-lg {
+        width: 250px;
+        height: 250px;
+        top: 30px;
+        left: 20px;
+      }
+      .img-circle-sm {
+        width: 250px;
+        height: 250px;
+        bottom: 20px;
+        right: 10px;
+      }
+      /* rings hidden */
+      .ring {
+        display: none;
+      }
+
+      /* floating artisan tags */
+      .artisan-tag {
+        position: absolute;
+        background: var(--white);
+        border: 1px solid var(--gray-light);
+        border-radius: 50px;
+        padding: 7px 14px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--black);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+      }
+      .tag-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--blue-light);
+      }
+      .tag-1 {
+        top: 0;
+        right: 0;
+      }
+      .tag-2 {
+        bottom: 60px;
+        left: 0;
+      }
+      .tag-3 {
+        top: 50%;
+        left: -30px;
+        transform: translateY(-50%);
+      }
+
+      /* star rating badge */
+      .rating-badge {
+        position: absolute;
+        bottom: 0;
+        left: 60px;
+        background: var(--blue);
+        color: var(--white);
+        border-radius: 14px;
+        padding: 8px 14px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 6px 20px rgba(20, 80, 163, 0.35);
+      }
+
+      /* STATS BAR */
+      .stats-bar {
+        background: var(--blue);
+        padding: 36px 60px;
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .stat-label {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+      }
+
+      /* HOW IT WORKS */
+      .section {
+        padding: 100px 60px;
+      }
+      .section-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 14px;
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 900;
+        color: var(--black);
+        line-height: 1.15;
+        letter-spacing: -1.5px;
+        margin-bottom: 60px;
+      }
+      .section-title span {
+        color: var(--blue);
+      }
+
+      .steps-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 36px;
+      }
+      .step-card {
+        background: var(--white);
+        border: 1.5px solid var(--gray-light);
+        border-radius: 20px;
+        padding: 36px 28px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+      }
+      .step-card:hover {
+        border-color: var(--blue-light);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 50px rgba(20, 80, 163, 0.1);
+      }
+      .step-num {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: var(--blue-pale);
+        line-height: 1;
+        position: absolute;
+        top: 20px;
+        right: 24px;
+      }
+      .step-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: var(--blue-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+      }
+      .step-card h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .step-card p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: var(--gray);
+      }
+
+      /* ARTISANS SECTION */
+      .artisans-section {
+        padding: 100px 60px;
+        background: var(--blue-pale);
+      }
+      .artisan-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 900px;
+        margin: 0 auto;
+        justify-content: center;
+      }
+      .chip {
+        background: var(--white);
+        border: 1.5px solid var(--gray-light);
+        border-radius: 50px;
+        padding: 12px 22px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        cursor: default;
+        transition: all 0.2s;
+      }
+      .chip:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+        transform: translateY(-2px);
+      }
+      .chip-emoji {
+        font-size: 1.1rem;
+      }
+
+      /* TESTIMONIALS */
+      .testimonials-section {
+        padding: 100px 60px;
+        background: var(--black);
+      }
+      .testimonials-section .section-label {
+        color: var(--blue-light);
+      }
+      .testimonials-section .section-title {
+        color: var(--white);
+      }
+      .reviews-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .review-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 28px 24px;
+        transition: all 0.3s;
+      }
+      .review-card:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(59, 130, 246, 0.3);
+      }
+      .stars {
+        color: #fbbf24;
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+        letter-spacing: 2px;
+      }
+      .review-text {
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .reviewer {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .reviewer-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--blue), var(--blue-light));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--white);
+      }
+      .reviewer-name {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--white);
+      }
+      .reviewer-role {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      /* BOTTOM WAITLIST CTA */
+      .cta-section {
+        padding: 100px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(20, 80, 163, 0.08),
+          transparent 70%
+        );
+      }
+      .cta-section .section-title {
+        max-width: 700px;
+        margin: 0 auto 14px;
+      }
+      .cta-section p {
+        font-size: 1.05rem;
+        color: var(--gray);
+        margin-bottom: 40px;
+      }
+      .cta-form-row {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .cta-form-row input {
+        flex: 1;
+        min-width: 220px;
+        padding: 14px 20px;
+        border: 1.5px solid var(--gray-light);
+        border-radius: 12px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border 0.2s;
+      }
+      .cta-form-row input:focus {
+        border-color: var(--blue-light);
+      }
+      .cta-btn {
+        padding: 14px 32px;
+        background: var(--blue);
+        color: var(--white);
+        border: none;
+        border-radius: 12px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .cta-btn:hover {
+        background: var(--black);
+        transform: translateY(-2px);
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--gray-light);
+        padding: 40px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-logo {
+        display: flex;
+        align-items: center;
+      }
+      .footer-links {
+        display: flex;
+        gap: 28px;
+      }
+      .footer-links a {
+        font-size: 0.85rem;
+        color: var(--gray);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--blue);
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--gray);
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(0.85);
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .img-circle-lg {
+        animation: float 6s ease-in-out infinite;
+      }
+      .img-circle-sm {
+        animation: float 6s 1.5s ease-in-out infinite;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        nav {
+          padding: 12px 24px;
+        }
+        .hero {
+          padding: 100px 24px 60px;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          text-align: center;
+        }
+        .hero-right {
+          order: -1;
+        }
+        .hero-desc {
+          margin: 0 auto 32px;
+        }
+        .stats-bar {
+          gap: 40px;
+          padding: 36px 24px;
+        }
+        .section {
+          padding: 70px 24px;
+        }
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+        .artisans-section {
+          padding: 70px 24px;
+        }
+        .testimonials-section {
+          padding: 70px 24px;
+        }
+        .reviews-grid {
+          grid-template-columns: 1fr;
+        }
+        .cta-section {
+          padding: 70px 24px;
+        }
+        footer {
+          flex-direction: column;
+          text-align: center;
+          padding: 32px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="logo">
+        <!-- YOUR LOGO: Make sure logo1.png is in the same folder as index.html -->
+        <img src="/logo1.png" alt="Bluesans" class="logo-img" />
+      </div>
+      <a class="nav-cta" href="#waitlist">Join Waitlist</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="blob"></div>
+      <div class="blob2"></div>
+      <div class="hero-inner">
+        <!-- LEFT -->
+        <div class="hero-left">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Coming soon to Abuja
+          </div>
+          <h1>
+            Discover Skilled<br /><span class="accent">Artisans</span><br />Near
+            You
+          </h1>
+          <p class="hero-desc">
+            Bluesans connects you with trusted, verified artisans in Abuja,
+            tailors, carpenters, plumbers, electricians and more. Browse
+            profiles, read real reviews, and book with confidence.
+          </p>
+
+          <!-- WAITLIST FORM -->
+          <div class="waitlist-box" id="waitlist">
+            <h3>Be First in Line 🎉</h3>
+            <p>
+              Sign up for early access and get notified the moment we launch.
+            </p>
+            <div class="form-row" id="form-fields">
+              <input type="text" id="name" placeholder="Your full name" />
+              <input type="email" id="email" placeholder="Your email address" />
+              <select id="role">
+                <option value="" disabled selected>I am a...</option>
+                <option value="customer">
+                  Customer, looking to hire artisans
+                </option>
+                <option value="artisan">Artisan, offering my skills</option>
+              </select>
+              <button class="btn-submit" onclick="handleSubmit()">
+                Secure My Spot →
+              </button>
+            </div>
+            <p class="form-note">
+              🔒 No spam. We'll only email you about the launch.
+            </p>
+            <div class="success-msg" id="success-msg">
+              <div class="checkmark">🎊</div>
+              <h4>You're on the list!</h4>
+              <p>
+                We'll send your launch invitation to your inbox.<br />Tell a
+                friend, the more the merrier!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT, IMAGE CLUSTER -->
+        <div class="hero-right">
+          <div class="image-cluster">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+
+            <div class="img-circle img-circle-lg">
+              <img src="/Third image.jpeg" alt="Artisan at work" />
+            </div>
+            <div class="img-circle img-circle-sm">
+              <img src="/fourth image.jpeg" alt="Artisan at work" />
+            </div>
+
+            <div class="artisan-tag tag-1">
+              <span class="tag-dot"></span>200+ Artisans
+            </div>
+            <div class="artisan-tag tag-2">
+              <span class="tag-dot"></span>Verified Profiles
+            </div>
+            <div class="rating-badge">★ 4.9 &nbsp; Top Rated</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Artisans Ready</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">18+</div>
+        <div class="stat-label">Trade Categories</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Abuja</div>
+        <div class="stat-label">Launching First</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Free</div>
+        <div class="stat-label">For Customers</div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <section class="section">
+      <div style="max-width: 1100px; margin: 0 auto">
+        <div class="section-label">How It Works</div>
+        <div class="section-title">
+          Three steps to your<br /><span>perfect artisan</span>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <div class="step-icon">🔍</div>
+            <h4>Browse & Discover</h4>
+            <p>
+              Explore hundreds of verified artisans across Abuja. Filter by
+              skill, location, price range, and availability.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <div class="step-icon">⭐</div>
+            <h4>Read Real Reviews</h4>
+            <p>
+              Every artisan profile shows honest ratings and comments from
+              verified customers, so you always know what to expect.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <div class="step-icon">✅</div>
+            <h4>Book with Confidence</h4>
+            <p>
+              Request a service, agree on price and time, then sit back while
+              your artisan handles the job professionally.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTISAN CATEGORIES -->
+    <section class="artisans-section">
+      <div style="text-align: center; max-width: 1100px; margin: 0 auto">
+        <div class="section-label" style="text-align: center">
+          Trade Categories
+        </div>
+        <div
+          class="section-title"
+          style="text-align: center; margin-bottom: 40px"
+        >
+          Find any skilled <span>professional</span>
+        </div>
+        <div class="artisan-chips">
+          <div class="chip">
+            <span class="chip-emoji">🪛</span> Electricians
+          </div>
+          <div class="chip"><span class="chip-emoji">🔧</span> Plumbers</div>
+          <div class="chip">
+            <span class="chip-emoji">🪡</span> Tailors & Designers
+          </div>
+          <div class="chip"><span class="chip-emoji">🔨</span> Carpenters</div>
+          <div class="chip"><span class="chip-emoji">🎨</span> Painters</div>
+          <div class="chip">
+            <span class="chip-emoji">📱</span> Phone Repairers
+          </div>
+          <div class="chip"><span class="chip-emoji">🏠</span> Tilers</div>
+          <div class="chip">
+            <span class="chip-emoji">🚗</span> Auto Mechanics
+          </div>
+          <div class="chip">
+            <span class="chip-emoji">🍳</span> Cooks & Caterers
+          </div>
+          <div class="chip">
+            <span class="chip-emoji">💈</span> Barbers & Stylists
+          </div>
+          <div class="chip">
+            <span class="chip-emoji">❄️</span> AC Technicians
+          </div>
+          <div class="chip">
+            <span class="chip-emoji">🖼️</span> Interior Decorators
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div style="max-width: 1100px; margin: 0 auto">
+        <div class="section-label">What People Are Saying</div>
+        <div class="section-title" style="margin-bottom: 48px">
+          Early community <span style="color: var(--blue-light)">voices</span>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "Finally, an app that solves the real problem, finding a reliable
+              electrician in Abuja without asking around for three days."
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">AK</div>
+              <div>
+                <div class="reviewer-name">Adaeze K.</div>
+                <div class="reviewer-role">Early Sign-up · Maitama</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "As a tailor, I've been waiting for something like this. Bluesans
+              will help me reach customers who need me but don't know I exist
+              yet."
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">EB</div>
+              <div>
+                <div class="reviewer-name">Emeka B.</div>
+                <div class="reviewer-role">Artisan, Tailor · Wuse</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              "The reviews feature is the best part, I always want to know what
+              others experienced before I let someone into my home."
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">FI</div>
+              <div>
+                <div class="reviewer-name">Fatima I.</div>
+                <div class="reviewer-role">Early Sign-up · Garki</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <section class="cta-section">
+      <div style="position: relative; z-index: 1">
+        <div class="section-label" style="text-align: center">
+          Don't Miss Out
+        </div>
+        <div class="section-title" style="text-align: center">
+          Get notified when<br /><span>Bluesans launches</span>
+        </div>
+        <p>Join thousands of Abuja residents already on the waitlist.</p>
+        <div class="cta-form-row">
+          <input type="email" id="cta-email" placeholder="Enter your email" />
+          <button class="cta-btn" onclick="handleCTA()">Notify Me</button>
+        </div>
+        <p
+          id="cta-msg"
+          style="
+            font-size: 0.82rem;
+            color: var(--blue);
+            margin-top: 12px;
+            display: none;
+          "
+        >
+          ✔ You're on the list!
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-logo">
+        <!-- FOOTER LOGO: Replace src with your logo filename -->
+        <img src="/logo1.png" alt="Bluesans" class="footer-logo-img" />
+      </div>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">For Artisans</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+      <div class="footer-copy">© 2026 Bluesans. All rights reserved.</div>
+    </footer>
+
+    <script>
+      function handleSubmit() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const role = document.getElementById("role").value;
+        if (!name || !email) {
+          alert("Please enter your name and email.");
+          return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+        document.getElementById("form-fields").style.display = "none";
+        document.getElementById("success-msg").style.display = "block";
+      }
+
+      function handleCTA() {
+        const email = document.getElementById("cta-email").value.trim();
+        if (!email || !/\S+@\S+\.\S+/.test(email)) {
+          alert("Please enter a valid email.");
+          return;
+        }
+        document.getElementById("cta-email").value = "";
+        document.getElementById("cta-msg").style.display = "block";
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.style.opacity = "1";
+              e.target.style.transform = "translateY(0)";
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".step-card, .review-card, .chip")
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+          observer.observe(el);
+        });
+    </script>
+  </body>
+</html>
