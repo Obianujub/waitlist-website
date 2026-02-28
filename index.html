@@ -1348,6 +1348,16 @@
           alert("Please enter a valid email.");
           return;
         }
+
+        const url =
+          "https://script.google.com/macros/s/AKfycbwhnnmAviJkeBnFQaM6H-dz9kgvpQ3FJIjFqmUxexOAyBduKOlxUE4mBcgiJad8e2ELqQ/exec" +
+          "?name=CTA+Signup" +
+          "&email=" +
+          encodeURIComponent(email) +
+          "&role=email-only";
+
+        fetch(url, { method: "GET", mode: "no-cors" });
+
         document.getElementById("cta-email").value = "";
         document.getElementById("cta-msg").style.display = "block";
       }
