@@ -1328,23 +1328,20 @@
           return;
         }
 
-        try {
-          await fetch(
-            "https://script.google.com/macros/s/AKfycbzMwb6Rr-oxSpqDmxx1I03DGy7j-WI7FGEQkcvuwW6fbuk0cr6T01eKkemIPaPKbKH3tg/exec",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ name, email, role }),
-            },
-          );
-          document.getElementById("form-fields").style.display = "none";
-          document.getElementById("success-msg").style.display = "block";
-        } catch (err) {
-          document.getElementById("form-fields").style.display = "none";
-          document.getElementById("success-msg").style.display = "block";
-        }
-      }
+        const url =
+          "https://script.google.com/macros/s/AKfycbwhnnmAviJkeBnFQaM6H-dz9kgvpQ3FJIjFqmUxexOAyBduKOlxUE4mBcgiJad8e2ELqQ/exec" +
+          "?name=" +
+          encodeURIComponent(name) +
+          "&email=" +
+          encodeURIComponent(email) +
+          "&role=" +
+          encodeURIComponent(role);
 
+        fetch(url, { method: "GET", mode: "no-cors" });
+
+        document.getElementById("form-fields").style.display = "none";
+        document.getElementById("success-msg").style.display = "block";
+      }
       function handleCTA() {
         const email = document.getElementById("cta-email").value.trim();
         if (!email || !/\S+@\S+\.\S+/.test(email)) {
